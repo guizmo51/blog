@@ -1,0 +1,39 @@
+{{ partial "header.html" . }}
+<body>
+{{ partial "navbar.html" . }}
+<div class="slider">
+    <ul class="slides">
+     {{ range where .Data.Pages "Params.category" "slider"}}
+                        {{ .Render "carrousel" }}
+        {{ end}}
+    </ul>
+  </div>
+
+</div>
+
+<div id="" class="container marketing">
+    <div class="row">
+    
+</div>
+	<h2 style="text-align:center;" >Expériences</h2>
+   <div class="section scrollspy" id="experiences">
+                    {{ range where .Data.Pages "Params.category" "experiences"}}
+                        {{ .Render "li" }}
+                    {{ end}}
+   </div>
+    <h2 style="text-align:center;" >Formation</h2>
+    <div class="section scrollspy" id="formation">
+                    {{ range where .Data.Pages "Params.category" "formation"}}
+                        {{ .Render "li" }}
+                    {{ end}}
+    </div>
+    <h2 style="text-align:center;" class="scrollspy" id="projets">Projets</h2>
+    <div class="section scrollspy" id="projets">
+                    {{ range where .Data.Pages "Params.category" "projets"}}
+                        {{ .Render "li" }}
+                    {{ end}}
+    </div>
+</div>
+{{ partial "footer.copyright.html" . }}
+</div>
+{{ partial "footer.html" . }}

@@ -1,0 +1,5 @@
+baseurl = "http://www.simonblum.me/"
+languageCode = "fr-fr"
+title = "Blog"
+Paginate = 8
+disqusShortname = "disqus_xSIs5w4qKS"

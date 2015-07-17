@@ -1,0 +1,12 @@
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Simon Blum</a>
+     {{ if eq .Title "Cvs" }} 
+     	{{ partial "menu-cv.html" . }}
+     {{ end }}
+      {{ if eq .Title "Blog" }} 
+     	{{ partial "menu-blog.html" . }}
+     {{ end }}
+    </div>
+  </nav>
+       

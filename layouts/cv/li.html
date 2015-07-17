@@ -1,0 +1,19 @@
+
+
+ <div class="col s12 m8 offset-m2 l6 offset-l3 ">
+  <div class="card-panel grey lighten-5 z-depth-1">
+  	<h3 class="featurette-heading">{{ .Title}}</h3>
+          <div class="row valign-wrapper">
+          	{{ if isset .Params "image" }}
+            <div class="col s2">
+              <img src="/images/{{ .Params.image}}" alt="" class="responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            {{end}}
+            <div class="col s10">
+              <span class="black-text">
+                {{ .Content }}
+              </span>
+            </div>
+          </div>
+        </div>
+    </div>

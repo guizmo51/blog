@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+    <title>boostadopt - http://localhost:1313/</title>
+      
+             
+      <link type="text/css" rel="stylesheet" href="/css/style.css"  media="screen,projection"/>
+
+      <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="/css/custom.css"  media="screen,projection"/>
+      
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    </head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Simon Blum</a>
+    
+     	<ul id="nav-mobile" class="right hide-on-med-and-down">
+       <li><a href="http://localhost:1313//post/pourquoi-ce-blog/">Pourquoi ce blog ?</a></li>
+                    <li><a href="http://localhost:1313//categories/retour-dexperience/">Retour d'expérience</a></li>
+                    <li><a href="http://localhost:1313//categories/hacks/">Hacks</a></li>
+                    <li><a href="http://localhost:1313//categories/hors-sujet/">Hors-sujet..</a></li>
+                    <li><a href="http://localhost:1313//cv">mon CV</a></li>
+</ul>
+
+    
+    </div>
+  </nav>
+       
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="well well-sm">
+                    <h3>boostadopt<br> <small></small></h3>
+                    <hr>
+                     April 1, 2015  - <a href="/categories/retour-dexperience ">retour d&#39;experience</a> <br>
+                    <hr>
+                    <p>-AUM
+-PHP avant, mobie
+-Problematique
+- Back
+- Front
+- Chrome extension</p>
+
+<p>Pendant de nombreuses années et depuis l&rsquo;ouverture du site j&rsquo;ai été un utilisateur du site de rencontre <a href="http://www.adopteunmec.com">AdopteUnMec.com</a> (ce n&rsquo;est plus le cas maintenant ;-) ). Ce site a un concept assez particulier lui ayant permis de se démarquer : les hommes possèdent un nombre de charmes limité (un charme est semblable à un poke), la personne ayant reçu ce charme est notifiée de ce charme. Ensuite elle peut autoriser, si le profil émetteur du charme lui plait, l&rsquo;autoriser à lui écrire des messages. Suite à ça la conversation peut enfin s&rsquo;engager.</p>
+
+<p>AdopteUnMec a eu un business model assez mouvant depuis sa création puisqu&rsquo;à l&rsquo;origine gratuit il est devenu de plus en plus payant.</p>
+
+<p>Je n&rsquo;ai jamais voulu payer pour avoir accès à ce genre de site et j&rsquo;avais la chance d&rsquo;avoir un compte crée au début du site et ayant donc un accès gratuit à certaines fonctionnalités.</p>
+
+<p>Un jour  (en 2010) je me suis rendu par un test tout simple (création d&rsquo;un profil &ldquo;femmes&rdquo;) que les profils d&rsquo;hommes ayant un compte gratuit remontaient beaucoup moins dans les résultats de recherches. Je n&rsquo;ai toutefois pas réussi à déterminer l&rsquo;algorithme en place derrière. Afin d&rsquo;optmiser mes chances sur ce site je suis parti dans une autre théorie : si je visite 100 profils et que ma fiche est intéressante alors un pourcentage (15% - ) va venir la lire, et parmis ces 15% une faible proportion va m&rsquo;autoriser à lui écrire. Au final sur 100 filles, 3 ou 4 vont m&rsquo;autoriser à leur écrire. Très intéressé par les études et stats je souhaitais mettre un système d&rsquo;analyse et de remontée de ses stats mais je n&rsquo;en ai pas eu le temps.</p>
+
+<p>L&rsquo;autre idée qui m&rsquo;est venue en tête : au lieu de visiter manuellement ces profils ce qui est une tâche rébarbative et longue et si je faisais un programme faisant le travail à ma place ? Je me suis donc lancé dans la réalisation d&rsquo;un script visitant automatiquement en peu de temps des profils définis selon plusieurs paramètres.</p>
+
+<p>Initialement mon script faisait un travail classique : il simulait une connexion via le formulaire HTMl puis visitait les profils en chargant les pages HTML des profils. Après un temps d&rsquo;utilisation je me suis rendu compte de plusieurs choses :
+- les profils HTML étaient longs à charger, normal c&rsquo;est une page HTML donc plusieurs centaines de KiloOctet à chaque fois.
+- l&rsquo;accès au site AdopteUnMec à travers la version &ldquo;desktop&rdquo; était restreinte entre 18h et 1h du matin, cela réduisait le temps d&rsquo;utilisation potentiel du script.</p>
+
+<p>Suite à ça je me suis rendu compte que l&rsquo;application Android d&rsquo;AdopteUnMec ne subissait pas de blocage entre 18h et 1H du matin (toujours pour un même compte qui lui est bloqué sur la version &ldquo;desktop&rdquo; du site). La conclusion est simple si l&rsquo;application Android arrive à visiter cela alors mon script pourra le faire.</p>
+
+<p>J&rsquo;ai alors ouvert Wireshark qui est un utilitaire qui permet de capturer les packets passant sur le réseau. Pour vulgariser : ce logiciel permet de voir en partie les données transitant entre les ordinateurs du réseau observé. Pendant ce temps j&rsquo;ai utilisé l&rsquo;application Android sur tous les cas possibles : connexion, déconnexion, recherches, visites, charmes, envois de messages. Le but était d&rsquo;obtenir toutes les urls appellées et les paramètres (les données que l&rsquo;on donne à ces urls afin d&rsquo;obtenir ce que l&rsquo;on souhaite : l&rsquo;identifiant du profil, les paramètres de recherches , etc).</p>
+
+<p>Une fois toutes ces informations récupérées j&rsquo;ai pris le temps de reconstruire tout mon script autour de cette API : au final les requêtes sont devenues plus rapides. En effet l&rsquo;API retourne du JSON qui est donc rapidement exploitable par le serveur PHP alors qu&rsquo;auparavant il fallait parser du HTML.</p>
+
+<p>Une fois cela effectué tout était presque règlé : il y avait seulement des améliorations visant à ne pas être blacklisté par AdopteUnMec. Initialement cela était basé sur la fréquence des visites (si le temps était inférieur à 2 ou 3 secondes le compte pouvait être bloqué).</p>
+
+<p>Puis vint un jour où j&rsquo;ai voulu réaliser et monétiser une webapp à destination de tous les utilisateurs d&rsquo;AdopteunMec. Le but de cette application est d&rsquo;avoir une interface propre et épurée permettant de lancer automatiquement des visites sur un type de profil déterminé par la recherche. J&rsquo;ai nommé le fait de visiter rapidement plusieurs dizaines de profils déterminées &ldquo;Booster&rdquo;. Suite à cela j&rsquo;ai appelé mon application &ldquo;BoostAdopt.com&rdquo;. Ma recherche de nom de domaine a été très rapide mais une fois effectuée je me suis aperçu qu&rsquo;existait déja le nom de domaine &ldquo;boostAdopte.com&rdquo;. Ce dernier était désactivé avant d&rsquo;acheter le nom que j&rsquo;avais choisis.</p>
+
+<p>Avant de foncer tête baissée j&rsquo;ai réfléchi à toutes les problématiques que j&rsquo;aurai à affronter sur ce projet.</p>
+
+<p>Le premier problème fut le suivant : alors que j&rsquo;enregistrais automatiquement les profils visités au bout de 100 000 hits (visites) l&rsquo;IP du serveur appellant a été blacklistée. En clair mon serveur n&rsquo;avait plus accès aux serveurs d&rsquo;AdopteUnMec. même si un utilisateur ne va pas faire 100 000 d&rsquo;un coup , admettons que 1000 utilisateurs fasse 100 visites et le service devient bloqué.
+ Sur le papier il devint donc dur de proposer un service qui pourrait s&rsquo;arrêter du jour au lendemain. Une solution aurait pu être de changer d&rsquo;IP une fois chacune d&rsquo;entre elle blacklistée mais cela aurait été coûteux et aurait rendu le site peu fiable qualitativement parlant. Imaginez qu&rsquo;un utilisateur paie, lance le booster et se retrouve bloqué car le serveur vient d&rsquo;être blacklisté : ça ne le fait pas.</p>
+
+<p>Pour schématiser l&rsquo;architecture précèdemment citée : mon serveur appellait les serveurs d&rsquo;AdopteUnMec.</p>
+
+<p>Quelques jours plus tard me vint une idée un peu plus folle: que ça soit l&rsquo;IP propre à chaque utilisateur qui appelle le serveur AdopteUnMec. Cela a beaucoup d&rsquo;avantages : je n&rsquo;ai pas de changement d&rsquo;IP à faire et le service reste fiable.
+ L&rsquo;inconvénient majeur est qu&rsquo;il faut donner le code &ldquo;métier&rdquo; du côté du navigateur donc facilement imitable et donc le business deviendrait réduit ou inopérant. En effet n&rsquo;importe qui pourrait rréutiliser le code, le mettre à disposition gratuitement d&rsquo;autres utilisateurs.</p>
+
+            </div>
+        </div>
+    </div>
+ <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = '';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>&copy; Simon Blum 2015<br>
+                    Built with <a href="https://github.com/spf13/hugo">Hugo</a></p>
+                </div>
+            </div>
+        </footer>
+</div>
+       <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">SimonBlum.me</h5>
+                <p class="grey-text text-lighten-4"></p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Derniers contenus</h5>
+                <ul>
+                  
+                     <li><a class="grey-text text-lighten-3" href="/post/hacks/concours-facebook/"><i class="mdi-navigation-chevron-right"></i>concours facebook</a></li>
+                  
+                     <li><a class="grey-text text-lighten-3" href="/post/hors-sujets/stadedefrance/"><i class="mdi-navigation-chevron-right"></i>J&#39;ai couru un 100m au Stade de France devant 50.000 spectateurs</a></li>
+                  
+                     <li><a class="grey-text text-lighten-3" href="/post/retourdexperience/boostadopt/"><i class="mdi-navigation-chevron-right"></i>boostadopt</a></li>
+                  
+                     <li><a class="grey-text text-lighten-3" href="/post/pourquoi-ce-blog/"><i class="mdi-navigation-chevron-right"></i>Pourquoi ce blog ?</a></li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2015 Simon Blum
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+            
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="/js/materialize.min.js"></script>
+       <script type="text/javascript" src="/js/init.js"></script>
+    </body>
+  </html>
+
+

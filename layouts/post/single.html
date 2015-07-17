@@ -1,0 +1,21 @@
+{{ partial "header.html" . }}
+<body>
+{{ partial "navbar-post.html" . }}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="well well-sm">
+                    <h3>{{ .Title }}<br> <small>{{ .Description }}</small></h3>
+                    <hr>
+                     {{ .Date.Format "January 2, 2006" }}  {{if isset .Params "category" }}- <a href="/categories/{{ .Params.category | urlize }} ">{{ .Params.category }}</a> {{ end }}<br>
+                    <hr>
+                    {{ .Content }}
+            </div>
+        </div>
+    </div>
+ {{ partial "disqus.html" . }}
+
+{{ partial "footer.copyright.html" . }}
+</div>
+{{ partial "footer.html" . }}

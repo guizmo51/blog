@@ -1,0 +1,31 @@
+       <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">SimonBlum.me</h5>
+                <p class="grey-text text-lighten-4"></p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Derniers contenus</h5>
+                <ul>
+                  {{ range first 5 (where .Site.Pages "Section" "post" )}}
+                     <li><a class="grey-text text-lighten-3" href="{{.RelPermalink}}"><i class="mdi-navigation-chevron-right"></i>{{ .Title}}</a></li>
+                  {{end}}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2015 Simon Blum
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+            
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="/js/materialize.min.js"></script>
+       <script type="text/javascript" src="/js/init.js"></script>
+    </body>
+  </html>
+

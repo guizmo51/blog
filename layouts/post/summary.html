@@ -1,0 +1,15 @@
+<div class="col s6">
+	  <div class="card medium">
+	  	 <div class="card-image">
+          <img class="activator" src="{{ .Site.BaseUrl }}/{{.Params.img}}">
+          <span class="card-title"><h5><a href="{{.Permalink}}">{{.Title }}</a></h5></span>
+        </div>
+        <div class="card-content">
+        	<p><i>{{.Date.Format "Mon Jan 2, 2006" }} {{if isset .Params "category" }}- <a href="/categories/{{ .Params.category | urlize }} ">{{ .Params.category }}</a> {{ end }} </i></p>
+          <p class="truncate">  {{ .Summary }}</p>
+        </div>
+        <div class="card-action">
+         <a href="{{.Permalink}}">Lire la suite</a>
+        </div>
+	  </div>
+</div>
